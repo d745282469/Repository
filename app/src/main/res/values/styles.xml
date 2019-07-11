@@ -17,4 +17,10 @@
         <item name="android:windowBackground">@android:color/transparent</item> <!--背景透明-->
         <item name="android:backgroundDimEnabled">true</item> <!--模糊-->
     </style>
+
+    <!--仿网易云的底部列表的动画-->
+    <style name="PopAnim" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/pop_up</item>
+        <item name="android:windowExitAnimation">@anim/pop_down</item>
+    </style>
 </resources>

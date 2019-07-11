@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--popWindow的单位-->
+    <dimen name="pop_menu_margin_vertical">7dp</dimen>
+    <dimen name="pop_menu_margin_ori">15dp</dimen>
+    <dimen name="pop_menu_img_size">20dp</dimen>
+</resources>

@@ -8,96 +8,142 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:divider="@drawable/main_divider"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:showDividers="middle">
+   <ScrollView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/main_btn_permission"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="运行时权限工具" />
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:orientation="vertical">
 
-        <Button
-            android:id="@+id/main_btn_multi_status_layout"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="多状态容器" />
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:divider="@drawable/main_divider"
+               android:gravity="center"
+               android:orientation="horizontal"
+               android:showDividers="middle">
 
-        <Button
-            android:id="@+id/main_btn_toutiao"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="仿头条滑动栏" />
+               <Button
+                   android:id="@+id/main_btn_permission"
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="1"
+                   android:text="运行时权限工具" />
 
-    </LinearLayout>
+               <Button
+                   android:id="@+id/main_btn_multi_status_layout"
+                   android:layout_width="0dp"
+                   android:layout_height="match_parent"
+                   android:layout_weight="1"
+                   android:text="多状态容器" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:divider="@drawable/main_divider"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:showDividers="middle">
+               <Button
+                   android:id="@+id/main_btn_toutiao"
+                   android:layout_width="0dp"
+                   android:layout_height="match_parent"
+                   android:layout_weight="1"
+                   android:text="仿头条滑动栏" />
 
-        <Button
-            android:id="@+id/main_btn_scroll_menu"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="低入侵的侧滑删除" />
+           </LinearLayout>
 
-        <Button
-            android:id="@+id/main_btn_recyclerView"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="RecyclerView相关"
-            android:textAllCaps="false" />
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:divider="@drawable/main_divider"
+               android:gravity="center"
+               android:orientation="horizontal"
+               android:showDividers="middle">
 
-        <Button
-            android:id="@+id/main_btn_dialog"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="弹窗" />
+               <Button
+                   android:id="@+id/main_btn_scroll_menu"
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="1"
+                   android:text="低入侵的侧滑删除" />
 
-    </LinearLayout>
+               <Button
+                   android:id="@+id/main_btn_recyclerView"
+                   android:layout_width="0dp"
+                   android:layout_height="match_parent"
+                   android:layout_weight="1"
+                   android:text="RecyclerView相关"
+                   android:textAllCaps="false" />
 
-    <ImageView
-        android:id="@+id/main_iv_test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+               <Button
+                   android:id="@+id/main_btn_dialog"
+                   android:layout_width="0dp"
+                   android:layout_height="match_parent"
+                   android:layout_weight="1"
+                   android:text="弹窗" />
 
-    <com.dong.repository.CustomView.BubbleSeekBar.BubbleSeekBar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:bsb_max="10"
-        app:bsb_show_section_text="true"
-        app:bsb_thumb_outline="true"
-        app:bsb_thumb_outline_color="#0029FF"
-        app:bsg_thumb_outline_size="4dp"
-        app:bsg_thumb_section_text_end="高"
-        app:bsg_thumb_section_text_start="低" />
+           </LinearLayout>
 
-    <!--新增设置选中项背景色功能的WheelPicker-->
-    <com.aigestudio.wheelpicker.WheelPicker
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:wheel_cyclic="true"
-        app:wheel_select_item_background_color="#f5ee1e"
-        app:wheel_selected_item_text_color="#fffffe" />
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:divider="@drawable/main_divider"
+               android:gravity="center"
+               android:orientation="horizontal"
+               android:showDividers="middle">
 
-    <com.dong.repository.CustomView.NumPicker
-        android:id="@+id/test_nump"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+               <Button
+                   android:visibility="invisible"
+                   android:layout_width="0dp"
+                   android:layout_height="match_parent"
+                   android:layout_weight="1"
+                   android:text="RecyclerView相关"
+                   android:textAllCaps="false" />
+
+               <Button
+                   android:id="@+id/main_btn_popwindow"
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="1"
+                   android:text="PopupWindow"
+                   android:textAllCaps="false"/>
+
+               <Button
+                   android:visibility="invisible"
+                   android:layout_width="0dp"
+                   android:layout_height="match_parent"
+                   android:layout_weight="1"
+                   android:text="弹窗" />
+
+           </LinearLayout>
+
+           <ImageView
+               android:id="@+id/main_iv_test"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content" />
+
+           <com.dong.repository.CustomView.BubbleSeekBar.BubbleSeekBar
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               app:bsb_max="10"
+               app:bsb_show_section_text="true"
+               app:bsb_thumb_outline="true"
+               app:bsb_thumb_outline_color="#0029FF"
+               app:bsg_thumb_outline_size="4dp"
+               app:bsg_thumb_section_text_end="高"
+               app:bsg_thumb_section_text_start="低" />
+
+           <!--新增设置选中项背景色功能的WheelPicker-->
+           <com.aigestudio.wheelpicker.WheelPicker
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               app:wheel_cyclic="true"
+               app:wheel_select_item_background_color="#f5ee1e"
+               app:wheel_selected_item_text_color="#fffffe" />
+
+           <com.dong.repository.CustomView.NumPicker
+               android:id="@+id/test_nump"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent" />
+
+       </LinearLayout>
+
+   </ScrollView>
 
 </LinearLayout>

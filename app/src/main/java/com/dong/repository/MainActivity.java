@@ -29,6 +29,7 @@ import com.dong.repository.Util.ActivityController;
 import com.dong.repository.Util.DialogUtil;
 import com.dong.repository.Util.Log;
 import com.dong.repository.Util.PermissionTool.PermissionTool;
+import com.dong.repository.Util.PopWindowUtil;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -152,6 +153,14 @@ public class MainActivity extends BaseActivity {
 //                    }
 //                });
                 DialogUtil.loading(context,"加载中");
+            }
+        });
+
+        Button btn_popupWindow = findViewById(R.id.main_btn_popwindow);
+        btn_popupWindow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopWindowUtil.demo(context,v);
             }
         });
 

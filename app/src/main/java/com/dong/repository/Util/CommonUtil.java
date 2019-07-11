@@ -23,7 +23,7 @@ public class CommonUtil {
      *
      * @param bgAlpha 屏幕透明度0.0-1.0 1表示完全不透明
      */
-    public static void setBackgroundAlpha(float bgAlpha, Context mContext) {
+    public static void setBackgroundAlpha(float bgAlpha, Activity mContext) {
         WindowManager.LayoutParams lp = ((Activity) mContext).getWindow()
                 .getAttributes();
         lp.alpha = bgAlpha;
