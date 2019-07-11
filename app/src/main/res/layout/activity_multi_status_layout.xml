@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CustomView.MultiStatusLayout.MultiStatusLayoutBaseActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/multi_btn_show_content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Show Content"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/multi_btn_show_loading"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Show Loading"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/multi_btn_show_empty"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Show Empty"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/multi_btn_show_Error"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Show Error"
+            android:textAllCaps="false"/>
+
+    </LinearLayout>
+
+    <com.dong.repository.CustomView.MultiStatusLayout.MultiStatusLayout
+        android:id="@+id/multi_status_layout"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:content_view="@layout/test_content"
+        app:loading_view="@layout/test_loading"
+        app:empty_view="@layout/test_empty"
+        app:error_view="@layout/test_error"/>
+
+</LinearLayout>
