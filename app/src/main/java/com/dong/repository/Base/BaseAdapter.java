@@ -16,6 +16,7 @@ import java.util.List;
  * time     2019/4/22 08:51
  * 如果要使用自定义的ViewHolder，必须重写createMyViewHolder();
  * 并且自定义的ViewHolder必须继承BaseViewHolder
+ * 自己写的太渣了，推荐使用https://github.com/CymChad/BaseRecyclerViewAdapterHelper
  */
 public abstract class BaseAdapter<B extends BaseViewHolder> extends RecyclerView.Adapter<B> {
     private static final String TAG = "BaseAdapter";
