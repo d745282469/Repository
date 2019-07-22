@@ -173,7 +173,7 @@ public class PopWindowUtil {
      */
     public static class Builder {
         private View contentView;
-        private Drawable backgroundDrawable;
+        private Drawable backgroundDrawable;//只有设置了background，才能响应事件
         private boolean touchable;//是否响应点击事件
         private boolean outSideTouchable;//是否响应外部点击事件
         private boolean focusable;//是否能获取焦点
