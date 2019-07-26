@@ -15,8 +15,6 @@ import android.widget.TextView;
 
 import com.dong.repository.R;
 
-import java.util.Random;
-
 /**
  * Create by AndroidStudio
  * Author: pd
@@ -26,19 +24,6 @@ import java.util.Random;
  */
 public class PopWindowUtil {
     private static final String TAG = "PopWindowUtil";
-    private static PopupWindow popupWindow;
-    public static final int GRAVITY_LEFT = 0;
-    public static final int GRAVITY_RIGHT = 1;
-    public static final int GRAVITY_TOP = 2;
-    public static final int GRAVITY_BOTTOM = 3;
-
-    public static void dismiss() {
-        if (popupWindow != null) {
-            popupWindow.dismiss();
-        } else {
-            Log.e(TAG, "popupWindow is null!");
-        }
-    }
 
     /**
      * 模拟网易云音乐的底部列表
@@ -48,7 +33,7 @@ public class PopWindowUtil {
      */
     public static void bottomList(final Activity activity, View anchorView) {
         View view = LayoutInflater.from(activity).inflate(R.layout.pop_menu, null);
-        popupWindow = new Builder()
+        PopupWindow popupWindow = new Builder()
                 .setContentView(view)
                 .setAnimationStyle(R.style.PopAnim)
                 .setBackgroundDrawable(activity.getDrawable(R.drawable.pop_menu_round))
@@ -94,77 +79,130 @@ public class PopWindowUtil {
         popupWindow.showAtLocation(anchorView, Gravity.BOTTOM, 0, 0);
     }
 
+    /**
+     * demo展示
+     */
     public static void demo(Context context, View anchorView) {
-        dismiss();
         TextView textView = new TextView(context);
         textView.setText("Hello");
         textView.setBackgroundColor(Color.BLACK);
         textView.setTextColor(Color.WHITE);
 
-        popupWindow = new Builder()
+        PopupWindow popupWindow = new Builder()
                 .setContentView(textView)
                 .build();
-        showBaseOnAnchor(anchorView, new Random().nextInt(5));
+        showBaseOnAnchor(anchorView, popupWindow, HorizontalLocation.LEFT, HorizontalGravity.CENTER);
+    }
+
+    /**
+     * demo展示
+     */
+    public static void demo1(Context context, View anchorView) {
+        TextView textView = new TextView(context);
+        textView.setText("Hello");
+        textView.setBackgroundColor(Color.BLACK);
+        textView.setTextColor(Color.WHITE);
+
+        PopupWindow popupWindow = new Builder()
+                .setContentView(textView)
+                .build();
+        showBaseOnAnchor(anchorView, popupWindow, VerticalLocation.TOP, VerticalGravity.CENTER);
     }
 
     /**
      * 根据锚点View进行偏移
      *
      * @param anchorView 锚点View
-     * @param location   要放置的位置
+     * @param window     要显示的PopUpWindow
+     * @param location   方向位置
+     * @param gravity    重力位置
      */
-    private static void showBaseOnAnchor(View anchorView, int location) {
-        dismiss();
-        Log.d(TAG, "location=" + location);
+    public static void showBaseOnAnchor(View anchorView, PopupWindow window,
+                                        HorizontalLocation location, HorizontalGravity gravity) {
         int anchorHeight = anchorView.getHeight();//锚点View的高度
         int anchorWidth = anchorView.getWidth();//锚点View的宽度
-        popupWindow.getContentView().measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);//强制计算布局
         //获取popupWindow的宽高
-        int windowHeight = popupWindow.getHeight();
-        int windowWidth = popupWindow.getWidth();
-        if (windowHeight <= 0) {
-            windowHeight = popupWindow.getContentView().getMeasuredHeight();
-        }
-        if (windowWidth <= 0) {
-            windowWidth = popupWindow.getContentView().getMeasuredWidth();
+        int windowHeight = window.getHeight();
+        int windowWidth = window.getWidth();
+        if (windowHeight <= 0 || windowWidth <= 0) {
+            window.getContentView().measure(View.MeasureSpec.UNSPECIFIED,
+                    View.MeasureSpec.UNSPECIFIED);//强制计算布局
+            windowHeight = window.getContentView().getMeasuredHeight();
+            windowWidth = window.getContentView().getMeasuredWidth();
         }
         int xOff = 0, yOff = 0;
 
-        //根据位置计算偏移量
-        switch (location) {
-            case GRAVITY_RIGHT:
-                xOff = anchorWidth;
-                yOff = -anchorHeight;
-                break;
-            case GRAVITY_LEFT:
-                xOff = -windowWidth;
-                yOff = -anchorHeight;
-                break;
-            case GRAVITY_TOP:
-                xOff = 0;
-                yOff = -(anchorHeight + windowHeight);
-                break;
-            case GRAVITY_BOTTOM:
-                xOff = 0;
-                yOff = 0;
-                break;
+        if (location == HorizontalLocation.LEFT) {
+            xOff = -windowWidth;
+        } else if (location == HorizontalLocation.RIGHT) {
+            xOff = anchorWidth;
         }
-//        xOff = 0;
-//        yOff = 0;
-        Log.d(TAG, String.format("xOff=%s,y0ff=%s,viewHeight=%s,viewWidth=%s,windowHeight=%s,windowWidth=%s", xOff, yOff, anchorHeight, anchorWidth, windowHeight, windowWidth));
-        popupWindow.showAsDropDown(anchorView, xOff, yOff);
+
+        switch (gravity) {
+            case TOP: {
+                yOff = -anchorHeight;
+                break;
+            }
+            case BOTTOM: {
+                yOff = -windowHeight;
+                break;
+            }
+            case CENTER: {
+                yOff = -(windowHeight / 2 + anchorHeight / 2);
+                break;
+            }
+        }
+        Log.d(TAG, String.format("xOff=%s,yOff=%s,viewH=%s,viewW=%s,winH=%s,winW=%s",
+                xOff, yOff, anchorHeight, anchorWidth, windowHeight, windowWidth));
+        window.showAsDropDown(anchorView, xOff, yOff);
     }
 
     /**
      * 根据锚点View进行偏移
      *
      * @param anchorView 锚点View
-     * @param xOff       x轴方向的偏移量
-     * @param yOff       y轴方向的偏移量
+     * @param window     要显示的PopUpWindow
+     * @param location   方向位置
+     * @param gravity    重力位置
      */
-    private static void showAsDropDown(View anchorView, int xOff, int yOff) {
-        dismiss();
-        popupWindow.showAsDropDown(anchorView, xOff, yOff);
+    public static void showBaseOnAnchor(View anchorView, PopupWindow window,
+                                        VerticalLocation location, VerticalGravity gravity) {
+        int anchorHeight = anchorView.getHeight();//锚点View的高度
+        int anchorWidth = anchorView.getWidth();//锚点View的宽度
+        //获取popupWindow的宽高
+        int windowHeight = window.getHeight();
+        int windowWidth = window.getWidth();
+        if (windowHeight <= 0 || windowWidth <= 0) {
+            window.getContentView().measure(View.MeasureSpec.UNSPECIFIED,
+                    View.MeasureSpec.UNSPECIFIED);//强制计算布局
+            windowHeight = window.getContentView().getMeasuredHeight();
+            windowWidth = window.getContentView().getMeasuredWidth();
+        }
+        int xOff = 0, yOff = 0;
+
+        if (location == VerticalLocation.TOP) {
+            yOff = -(windowHeight + anchorHeight);
+        } else if (location == VerticalLocation.BOTTOM) {
+            yOff = 0;
+        }
+
+        switch (gravity) {
+            case LEFT: {
+                xOff = 0;
+                break;
+            }
+            case CENTER: {
+                xOff = anchorWidth / 2 - windowWidth / 2;
+                break;
+            }
+            case RIGHT: {
+                xOff = anchorWidth - windowWidth;
+                break;
+            }
+        }
+        Log.d(TAG, String.format("xOff=%s,yOff=%s,viewH=%s,viewW=%s,winH=%s,winW=%s",
+                xOff, yOff, anchorHeight, anchorWidth, windowHeight, windowWidth));
+        window.showAsDropDown(anchorView, xOff, yOff);
     }
 
     /**
@@ -242,5 +280,37 @@ public class PopWindowUtil {
             popupWindow.setOutsideTouchable(outSideTouchable);
             return popupWindow;
         }
+    }
+
+    /**
+     * 水平方向，左右
+     */
+    public enum HorizontalLocation {
+        LEFT, RIGHT
+    }
+
+    /**
+     * 重力位置
+     */
+    public enum HorizontalGravity {
+        TOP,
+        CENTER,
+        BOTTOM
+    }
+
+    /**
+     * 垂直方向，上下
+     */
+    public enum VerticalLocation {
+        TOP, BOTTOM
+    }
+
+    /**
+     * 重力位置
+     */
+    public enum VerticalGravity {
+        LEFT,
+        CENTER,
+        RIGHT
     }
 }

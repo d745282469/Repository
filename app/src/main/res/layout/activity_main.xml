@@ -96,12 +96,14 @@
                    android:text="RecyclerView相关"
                    android:textAllCaps="false" />
 
-               <Button
+               <TextView
                    android:id="@+id/main_btn_popwindow"
                    android:layout_width="0dp"
                    android:layout_height="wrap_content"
                    android:layout_weight="1"
                    android:text="PopupWindow"
+                   android:gravity="center"
+                   android:background="@color/colorPrimary"
                    android:textAllCaps="false"/>
 
                <Button

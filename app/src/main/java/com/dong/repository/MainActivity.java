@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
+import android.widget.TextView;
 
 import com.dong.repository.Base.BaseActivity;
 import com.dong.repository.CustomView.MultiStatusLayout.MultiStatusLayoutBaseActivity;
@@ -156,11 +157,11 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-        Button btn_popupWindow = findViewById(R.id.main_btn_popwindow);
+        TextView btn_popupWindow = findViewById(R.id.main_btn_popwindow);
         btn_popupWindow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PopWindowUtil.demo(context,v);
+                PopWindowUtil.demo1(context,v);
             }
         });
 
