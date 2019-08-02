@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -29,9 +30,11 @@ public abstract class BaseActivity extends AppCompatActivity {
         ActivityController.addActivity(this);
         context = this;
 
-        rootView = new LinearLayout(context);
-        rootView.setOrientation(LinearLayout.VERTICAL);
-        ViewGroup contentView = (ViewGroup) LayoutInflater.from(context).inflate(initLayout(), null);
+        FrameLayout contentView = new FrameLayout(context);
+        ViewGroup.LayoutParams params = new LinearLayout.LayoutParams( ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT);
+        contentView.setLayoutParams(params);
+        contentView.addView(LayoutInflater.from(context).inflate(initLayout(), null));
         rootView.addView(contentView);
 
         setContentView(rootView);
