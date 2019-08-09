@@ -30,6 +30,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         ActivityController.addActivity(this);
         context = this;
 
+        rootView = new LinearLayout(context);
+        rootView.setOrientation(LinearLayout.VERTICAL);
         FrameLayout contentView = new FrameLayout(context);
         ViewGroup.LayoutParams params = new LinearLayout.LayoutParams( ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT);
