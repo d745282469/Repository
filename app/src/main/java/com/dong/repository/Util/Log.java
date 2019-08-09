@@ -14,51 +14,114 @@ public class Log {
         android.util.Log.v(TAG, "当前日志开关：" + (isDebug ? "开" : "关"));
     }
 
+    public static void v(String tag, String msg, boolean isShowLine) {
+        if (isDebug) {
+            if (isShowLine) msg = msg + getLine();
+            android.util.Log.v(tag, msg);
+        }
+    }
+
     public static void v(String tag, String msg) {
         if (isDebug) {
-            android.util.Log.v(tag, msg + getLine());
+            android.util.Log.v(tag, msg);
+        }
+    }
+
+    public static void v(String msg, boolean isShowLine) {
+        if (isDebug) {
+            if (isShowLine) msg = msg + getLine();
+            android.util.Log.v(TAG, msg);
         }
     }
 
     public static void v(String msg) {
         if (isDebug) {
-            android.util.Log.v(TAG, msg + getLine());
+            android.util.Log.v(TAG, msg);
+        }
+    }
+
+    public static void d(String tag, String msg, boolean isShowLine) {
+        if (isDebug) {
+            if (isShowLine) msg = msg + getLine();
+            android.util.Log.d(tag, msg);
         }
     }
 
     public static void d(String tag, String msg) {
         if (isDebug) {
-            android.util.Log.d(tag, msg + getLine());
+            android.util.Log.d(tag, msg);
         }
     }
 
     public static void d(String msg) {
         if (isDebug) {
-            android.util.Log.d(TAG, msg + getLine());
+            android.util.Log.d(TAG, msg);
+        }
+    }
+
+    public static void d(String msg, boolean isShowLine) {
+        if (isDebug) {
+            if (isShowLine) msg = msg + getLine();
+            android.util.Log.d(TAG, msg);
+        }
+    }
+
+    public static void i(String tag, String msg, boolean isShowLine) {
+        if (isDebug) {
+            if (isShowLine) msg = msg + getLine();
+            android.util.Log.i(tag, msg);
         }
     }
 
     public static void i(String tag, String msg) {
         if (isDebug) {
-            android.util.Log.i(tag, msg + getLine());
+            android.util.Log.i(tag, msg);
         }
     }
 
     public static void i(String msg) {
         if (isDebug) {
-            android.util.Log.i(TAG, msg + getLine());
+            android.util.Log.i(TAG, msg);
+        }
+    }
+
+    public static void i(String msg, boolean isShowLine) {
+        if (isDebug) {
+            if (isShowLine) msg = msg + getLine();
+            android.util.Log.i(TAG, msg);
+        }
+    }
+
+    public static void w(String tag, String msg, boolean isShowLine) {
+        if (isDebug) {
+            if (isShowLine) msg = msg + getLine();
+            android.util.Log.w(tag, msg);
         }
     }
 
     public static void w(String tag, String msg) {
         if (isDebug) {
-            android.util.Log.w(tag, msg + getLine());
+            android.util.Log.w(tag, msg);
         }
     }
 
     public static void w(String msg) {
         if (isDebug) {
-            android.util.Log.w(TAG, msg + getLine());
+            android.util.Log.w(TAG, msg);
+        }
+    }
+
+    public static void w(String msg, boolean isShowLine) {
+        if (isDebug) {
+            if (isShowLine) msg = msg + getLine();
+            android.util.Log.w(TAG, msg);
+        }
+    }
+
+    public static void e(String tag, String msg, boolean isShowLine) {
+        if (isDebug) {
+            if (isShowLine) msg = msg + getLine();
+            android.util.Log.e(tag, msg);
         }
     }
 
@@ -70,7 +133,14 @@ public class Log {
 
     public static void e(String msg) {
         if (isDebug) {
-            android.util.Log.e(TAG, msg + getLine());
+            android.util.Log.e(TAG,msg + getLine());
+        }
+    }
+
+    public static void e(String msg, boolean isShowLine) {
+        if (isDebug) {
+            if (isShowLine) msg = msg + getLine();
+            android.util.Log.e(TAG,msg);
         }
     }
 
@@ -83,7 +153,7 @@ public class Log {
         if (isShowLine) {
             return "(" + new Throwable().getStackTrace()[2].getFileName()
                     + ":" + new Throwable().getStackTrace()[2].getLineNumber() + ")";
-        }else {
+        } else {
             return "";
         }
     }
