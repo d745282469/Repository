@@ -8,144 +8,150 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-   <ScrollView
-       android:layout_width="match_parent"
-       android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-       <LinearLayout
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"
-           android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-           <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:divider="@drawable/main_divider"
-               android:gravity="center"
-               android:orientation="horizontal"
-               android:showDividers="middle">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="@drawable/main_divider"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:showDividers="middle">
 
-               <Button
-                   android:id="@+id/main_btn_permission"
-                   android:layout_width="0dp"
-                   android:layout_height="wrap_content"
-                   android:layout_weight="1"
-                   android:text="运行时权限工具" />
+                <Button
+                    android:id="@+id/main_btn_permission"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="运行时权限工具" />
 
-               <Button
-                   android:id="@+id/main_btn_multi_status_layout"
-                   android:layout_width="0dp"
-                   android:layout_height="match_parent"
-                   android:layout_weight="1"
-                   android:text="多状态容器" />
+                <Button
+                    android:id="@+id/main_btn_multi_status_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="多状态容器" />
 
-               <Button
-                   android:id="@+id/main_btn_toutiao"
-                   android:layout_width="0dp"
-                   android:layout_height="match_parent"
-                   android:layout_weight="1"
-                   android:text="仿头条滑动栏" />
+                <Button
+                    android:id="@+id/main_btn_toutiao"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="仿头条滑动栏" />
 
-           </LinearLayout>
+            </LinearLayout>
 
-           <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:divider="@drawable/main_divider"
-               android:gravity="center"
-               android:orientation="horizontal"
-               android:showDividers="middle">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="@drawable/main_divider"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:showDividers="middle">
 
-               <Button
-                   android:id="@+id/main_btn_scroll_menu"
-                   android:layout_width="0dp"
-                   android:layout_height="wrap_content"
-                   android:layout_weight="1"
-                   android:text="低入侵的侧滑删除" />
+                <Button
+                    android:id="@+id/main_btn_scroll_menu"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="低入侵的侧滑删除" />
 
-               <Button
-                   android:id="@+id/main_btn_recyclerView"
-                   android:layout_width="0dp"
-                   android:layout_height="match_parent"
-                   android:layout_weight="1"
-                   android:text="RecyclerView相关"
-                   android:textAllCaps="false" />
+                <Button
+                    android:id="@+id/main_btn_recyclerView"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="RecyclerView相关"
+                    android:textAllCaps="false" />
 
-               <Button
-                   android:id="@+id/main_btn_dialog"
-                   android:layout_width="0dp"
-                   android:layout_height="match_parent"
-                   android:layout_weight="1"
-                   android:text="弹窗" />
+                <Button
+                    android:id="@+id/main_btn_dialog"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="弹窗" />
 
-           </LinearLayout>
+            </LinearLayout>
 
-           <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:divider="@drawable/main_divider"
-               android:gravity="center"
-               android:orientation="horizontal"
-               android:showDividers="middle">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="@drawable/main_divider"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:showDividers="middle">
 
-               <Button
-                   android:visibility="invisible"
-                   android:layout_width="0dp"
-                   android:layout_height="match_parent"
-                   android:layout_weight="1"
-                   android:text="RecyclerView相关"
-                   android:textAllCaps="false" />
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="RecyclerView相关"
+                    android:textAllCaps="false"
+                    android:visibility="invisible" />
 
-               <TextView
-                   android:id="@+id/main_btn_popwindow"
-                   android:layout_width="0dp"
-                   android:layout_height="wrap_content"
-                   android:layout_weight="1"
-                   android:text="PopupWindow"
-                   android:gravity="center"
-                   android:background="@color/colorPrimary"
-                   android:textAllCaps="false"/>
+                <TextView
+                    android:id="@+id/main_btn_popwindow"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center"
+                    android:text="PopupWindow"
+                    android:textAllCaps="false" />
 
-               <Button
-                   android:visibility="invisible"
-                   android:layout_width="0dp"
-                   android:layout_height="match_parent"
-                   android:layout_weight="1"
-                   android:text="弹窗" />
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="弹窗"
+                    android:visibility="invisible" />
 
-           </LinearLayout>
+            </LinearLayout>
 
-           <ImageView
-               android:id="@+id/main_iv_test"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content" />
+            <ImageView
+                android:id="@+id/main_iv_test"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-           <com.dong.repository.CustomView.BubbleSeekBar.BubbleSeekBar
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               app:bsb_max="10"
-               app:bsb_show_section_text="true"
-               app:bsb_thumb_outline="true"
-               app:bsb_thumb_outline_color="#0029FF"
-               app:bsg_thumb_outline_size="4dp"
-               app:bsg_thumb_section_text_end="高"
-               app:bsg_thumb_section_text_start="低" />
+            <com.dong.repository.CustomView.BubbleSeekBar.BubbleSeekBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:bsb_max="10"
+                app:bsb_show_section_text="true"
+                app:bsb_thumb_outline="true"
+                app:bsb_thumb_outline_color="#0029FF"
+                app:bsg_thumb_outline_size="4dp"
+                app:bsg_thumb_section_text_end="高"
+                app:bsg_thumb_section_text_start="低" />
 
-           <!--新增设置选中项背景色功能的WheelPicker-->
-           <com.aigestudio.wheelpicker.WheelPicker
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               app:wheel_cyclic="true"
-               app:wheel_select_item_background_color="#f5ee1e"
-               app:wheel_selected_item_text_color="#fffffe" />
+            <com.pd.switchbutton.SwitchButton
+                android:id="@+id/sb"
+                android:layout_width="90dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="5dp"/>
 
-           <com.dong.repository.CustomView.NumPicker
-               android:id="@+id/test_nump"
-               android:layout_width="match_parent"
-               android:layout_height="match_parent" />
+            <!--新增设置选中项背景色功能的WheelPicker-->
+            <com.aigestudio.wheelpicker.WheelPicker
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:wheel_cyclic="true"
+                app:wheel_select_item_background_color="#f5ee1e"
+                app:wheel_selected_item_text_color="#fffffe" />
 
-       </LinearLayout>
+            <com.dong.repository.CustomView.NumPicker
+                android:id="@+id/test_nump"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
-   </ScrollView>
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>

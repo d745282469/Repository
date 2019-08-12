@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SwitchButton">
+        <!--动画时长-->
+        <attr name="duration" format="integer"/>
+
+        <!--选中时矩形的颜色-->
+        <attr name="checkBarColor" format="color"/>
+
+        <!--未选中时矩形颜色-->
+        <attr name="uncheckBarColor" format="color"/>
+
+        <!--选中时圆的颜色-->
+        <attr name="checkCircleColor" format="color"/>
+
+        <!--未选中时圆的颜色-->
+        <attr name="uncheckCircleColor" format="color"/>
+
+        <!--圆的半径-->
+        <attr name="radius" format="integer"/>
+
+        <!--是否选中-->
+        <attr name="isCheck" format="boolean"/>
+    </declare-styleable>
+</resources>
