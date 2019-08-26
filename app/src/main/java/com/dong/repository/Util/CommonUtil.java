@@ -7,8 +7,10 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 
 import java.util.List;
 
@@ -86,5 +88,24 @@ public class CommonUtil {
         int width = dm.widthPixels;
         int height = dm.heightPixels;
         return new int[]{width, height};
+    }
+
+    /**
+     * 显示/隐藏软键盘
+     */
+    private void toggleInput(Context context){
+        InputMethodManager inputMethodManager =
+                (InputMethodManager)context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+    }
+
+    /**
+     * 强制隐藏软键盘
+     * @param view 用于获取WindowToken
+     */
+    private void hideInput(Context context, View view){
+        InputMethodManager inputMethodManager =
+                (InputMethodManager)context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(),0);
     }
 }
