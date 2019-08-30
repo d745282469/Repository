@@ -26,6 +26,7 @@ import com.dong.repository.CustomView.MultiStatusLayout.MultiStatusLayoutBaseAct
 import com.dong.repository.CustomView.ScrollMenu.ScrollMenuActivity;
 import com.dong.repository.CustomView.TouTiaoTabLayout.TouTiaoLayoutActivity;
 import com.dong.repository.Show.ShowBaseAdapterActivity;
+import com.dong.repository.Show.ShowFloatBtnActivity;
 import com.dong.repository.Util.ActivityController;
 import com.dong.repository.Util.DialogUtil;
 import com.dong.repository.Util.Log;
@@ -109,6 +110,14 @@ public class MainActivity extends BaseActivity {
     public void init() {
         context = this;
         getPermission();
+
+        Button btn_show_floatBtn = findViewById(R.id.main_btn_show_floatBtn);
+        btn_show_floatBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), ShowFloatBtnActivity.class));
+            }
+        });
 
         SwitchButton switchButton = findViewById(R.id.sb);
         switchButton.setOnCheckListener(new SwitchButton.OnCheckListener() {
