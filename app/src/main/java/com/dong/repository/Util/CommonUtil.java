@@ -5,8 +5,11 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.provider.Settings;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -20,6 +23,8 @@ import java.util.List;
  * 一些无法分类的工具
  */
 public class CommonUtil {
+    private static final String TAG = "CommonUtil";
+
     /**
      * 设置屏幕的背景透明度
      *
@@ -93,19 +98,61 @@ public class CommonUtil {
     /**
      * 显示/隐藏软键盘
      */
-    private void toggleInput(Context context){
+    private void toggleInput(Context context) {
         InputMethodManager inputMethodManager =
-                (InputMethodManager)context.getSystemService(Context.INPUT_METHOD_SERVICE);
+                (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         inputMethodManager.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
     /**
      * 强制隐藏软键盘
+     *
      * @param view 用于获取WindowToken
      */
-    private void hideInput(Context context, View view){
+    private void hideInput(Context context, View view) {
         InputMethodManager inputMethodManager =
-                (InputMethodManager)context.getSystemService(Context.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(),0);
+                (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    /**
+     * 检测辅助功能是否开启
+     *
+     * @param mContext    上下文环境
+     * @param helpService 辅助功能服务类
+     * @return boolean
+     */
+    public static boolean isAccessibilitySettingsOn(Context mContext, Class helpService) {
+        int accessibilityEnabled = 0;
+        // HelpService为对应的服务
+        final String service = mContext.getPackageName() + "/" + helpService.getCanonicalName();
+        try {
+            accessibilityEnabled = Settings.Secure.getInt(mContext.getApplicationContext().getContentResolver(),
+                    android.provider.Settings.Secure.ACCESSIBILITY_ENABLED);
+        } catch (Settings.SettingNotFoundException e) {
+            e.printStackTrace();
+        }
+        TextUtils.SimpleStringSplitter mStringColonSplitter = new TextUtils.SimpleStringSplitter(':');
+
+        if (accessibilityEnabled == 1) {
+            android.util.Log.v(TAG, "***ACCESSIBILITY IS ENABLED*** -----------------");
+            String settingValue = Settings.Secure.getString(mContext.getApplicationContext().getContentResolver(),
+                    Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES);
+            if (settingValue != null) {
+                mStringColonSplitter.setString(settingValue);
+                while (mStringColonSplitter.hasNext()) {
+                    String accessibilityService = mStringColonSplitter.next();
+
+                    android.util.Log.v(TAG, "-------------- > accessibilityService :: " + accessibilityService + " " + service);
+                    if (accessibilityService.equalsIgnoreCase(service)) {
+                        android.util.Log.v(TAG, "We've found the correct setting - accessibility is switched on!");
+                        return true;
+                    }
+                }
+            }
+        } else {
+            Log.v(TAG, "***ACCESSIBILITY IS DISABLED***");
+        }
+        return false;
     }
 }
