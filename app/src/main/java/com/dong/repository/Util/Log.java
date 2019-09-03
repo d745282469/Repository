@@ -28,6 +28,7 @@ public class Log {
     private static boolean isShowLine = true;//是否显示调用行号
     private static String localLogPath;
     private static String fileName;
+    private static long MAX_SIZE = 10 * 1024 * 100;
 
     public static void isDebug(Boolean isDebug) {
         Log.isDebug = isDebug;
@@ -188,8 +189,6 @@ public class Log {
             fileName = "Log.log";
         }
         File file = new File(localLogPath, fileName);
-        StringBuilder builder = new StringBuilder();
-
         try {
             if (!file.getParentFile().exists()) {
                 //父级路径不存在，创建路径
@@ -198,7 +197,9 @@ public class Log {
                     throw new IOException("Create path \"" + file.getParentFile().getPath() + "\" fail");
                 }
             }
-            BufferedWriter writer = new BufferedWriter(new FileWriter(file,true));
+
+            //如果文件大小超过设置的阀值，则清空文件
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file,file.length() < MAX_SIZE));
             writer.write("\r\n" + msg);
             writer.flush();
             writer.close();
@@ -215,6 +216,10 @@ public class Log {
 
     public static void setLocalLogPath(String localLogPath) {
         Log.localLogPath = localLogPath;
+    }
+
+    public static void setMaxSize(long maxSize) {
+        MAX_SIZE = maxSize;
     }
 
     /**
