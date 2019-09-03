@@ -14,6 +14,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -110,7 +111,6 @@ public class MainActivity extends BaseActivity {
     public void init() {
         context = this;
         getPermission();
-
         Button btn_show_floatBtn = findViewById(R.id.main_btn_show_floatBtn);
         btn_show_floatBtn.setOnClickListener(new View.OnClickListener() {
             @Override
