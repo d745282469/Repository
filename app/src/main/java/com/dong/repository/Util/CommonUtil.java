@@ -77,7 +77,7 @@ public class CommonUtil {
         } else {
             layoutParams.height = UnitUtil.dip2px(context, itemHeight * list.size());
         }
-        rv.setLayoutParams(layoutParams);
+        rv.setLayoutParams( layoutParams);
     }
 
     /**
@@ -146,7 +146,7 @@ public class CommonUtil {
                     android.util.Log.v(TAG, "-------------- > accessibilityService :: " + accessibilityService + " " + service);
                     if (accessibilityService.equalsIgnoreCase(service)) {
                         android.util.Log.v(TAG, "We've found the correct setting - accessibility is switched on!");
-                        return true;
+                          return true;
                     }
                 }
             }
