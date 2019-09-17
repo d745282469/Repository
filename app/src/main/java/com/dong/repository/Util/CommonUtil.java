@@ -2,9 +2,11 @@ package com.dong.repository.Util;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.provider.Settings;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -14,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -77,7 +80,7 @@ public class CommonUtil {
         } else {
             layoutParams.height = UnitUtil.dip2px(context, itemHeight * list.size());
         }
-        rv.setLayoutParams( layoutParams);
+        rv.setLayoutParams(layoutParams);
     }
 
     /**
@@ -146,7 +149,7 @@ public class CommonUtil {
                     android.util.Log.v(TAG, "-------------- > accessibilityService :: " + accessibilityService + " " + service);
                     if (accessibilityService.equalsIgnoreCase(service)) {
                         android.util.Log.v(TAG, "We've found the correct setting - accessibility is switched on!");
-                          return true;
+                        return true;
                     }
                 }
             }
@@ -154,5 +157,30 @@ public class CommonUtil {
             Log.v(TAG, "***ACCESSIBILITY IS DISABLED***");
         }
         return false;
+    }
+
+    /**
+     * 判断是否有悬浮窗权限
+     *
+     * @param context 上下文
+     * @return true/false
+     */
+    public static boolean canDrawOverLays(Context context) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            return Settings.canDrawOverlays(context);
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * 跳转去授权悬浮窗界面
+     *
+     * @param context 上下文用来跳转活动
+     */
+    public static void getOverLayPermission(Context context) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            context.startActivity(new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION));
+        }
     }
 }
