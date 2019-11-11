@@ -47,7 +47,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
     @Override
     public void uncaughtException(Thread t, Throwable e) {
         try {
-            SimpleDateFormat format = new SimpleDateFormat("yyyyMMddhhmmss", Locale.CHINA);
+            SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss", Locale.CHINA);
             String fileName = format.format(System.currentTimeMillis()) + ".log";
             String filePath = Environment.getExternalStorageDirectory().getPath() + "/" + pkInfo.packageName;
             File file = new File(filePath, fileName);
