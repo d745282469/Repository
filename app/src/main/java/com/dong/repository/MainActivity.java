@@ -1,6 +1,7 @@
 package com.dong.repository;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -15,14 +16,18 @@ import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Environment;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.dong.repository.Base.BaseActivity;
+import com.dong.repository.CustomView.GuideView;
 import com.dong.repository.CustomView.MultiStatusLayout.MultiStatusLayoutBaseActivity;
 import com.dong.repository.CustomView.ScrollMenu.ScrollMenuActivity;
 import com.dong.repository.CustomView.TouTiaoTabLayout.TouTiaoLayoutActivity;
@@ -33,6 +38,7 @@ import com.dong.repository.Util.DialogUtil;
 import com.dong.repository.Util.Log;
 import com.dong.repository.Util.PermissionTool.PermissionTool;
 import com.dong.repository.Util.PopWindowUtil;
+import com.dong.repository.Util.UnitUtil;
 import com.pd.switchbutton.SwitchButton;
 
 import java.lang.reflect.Field;
@@ -45,6 +51,7 @@ public class MainActivity extends BaseActivity {
     private static final String TAG = "MainActivity";
     private LinearLayout ll_root;
     private Context context;
+    private Button btnShowGuide;
 
     @Override
     protected void onNewIntent(Intent intent) {
@@ -81,6 +88,32 @@ public class MainActivity extends BaseActivity {
 //            }
 //        });
 
+        btnShowGuide = findViewById(R.id.main_btn_show_guide);
+        btnShowGuide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GuideView guideView = new GuideView(context);
+                guideView.setWindowManager(((Activity) context).getWindowManager());
+                guideView.setTargetView(btnShowGuide);
+                guideView.setText("引导文字");
+                guideView.setTextSize(UnitUtil.dip2px(context,30));
+                guideView.setPaddingTop(0);
+                guideView.setTextLocation(GuideView.TextLocation.BOTTOM);
+
+                final PopupWindow window = new PopWindowUtil.Builder()
+                        .setContentView(guideView)
+                        .setWidth(ViewGroup.LayoutParams.MATCH_PARENT)
+                        .setHeight(ViewGroup.LayoutParams.MATCH_PARENT)
+                        .build();
+                guideView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        window.dismiss();
+                    }
+                });
+                window.showAtLocation(((Activity) context).getWindow().getDecorView(), Gravity.BOTTOM,0,0);
+            }
+        });
     }
 
     private void getPermission() {

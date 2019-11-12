@@ -96,12 +96,13 @@
                     android:text="浮动按钮" />
 
                 <Button
+                    android:id="@+id/main_btn_show_guide"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="RecyclerView相关"
+                    android:text="显示引导层"
                     android:textAllCaps="false"
-                    android:visibility="invisible"/>
+                    android:visibility="visible"/>
 
                 <Button
                     android:layout_width="0dp"
