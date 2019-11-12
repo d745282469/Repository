@@ -8,17 +8,15 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.provider.Settings;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Toast;
 
-import java.util.List;
+import java.lang.reflect.Method;
 
 /**
  * @author pd
@@ -65,26 +63,44 @@ public class CommonUtil {
     }
 
     /**
-     * 调整列表高度，让列表只显示itemCount个的高度，需要知道子项的高度才可以
+     * 通过反射，获取包含虚拟键的整体屏幕高度
+     * 该高度包含了状态栏的高度
      *
-     * @param rv         要调整的列表
-     * @param itemCount  要显示的item数量
-     * @param list       数据源
-     * @param itemHeight 一个子项的高度
-     * @param context    上下文环境
+     * @return
      */
-    public static void adjustListHeight(RecyclerView rv, int itemCount, List list, int itemHeight, Context context) {
-        ViewGroup.LayoutParams layoutParams = rv.getLayoutParams();
-        if (list.size() > itemCount) {
-            layoutParams.height = UnitUtil.dip2px(context, itemHeight * itemCount);
-        } else {
-            layoutParams.height = UnitUtil.dip2px(context, itemHeight * list.size());
+    public static int getHasVirtualKeyHeight(Context context) {
+        int dpi = 0;
+        Display display = ((WindowManager) context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+        DisplayMetrics dm = new DisplayMetrics();
+        @SuppressWarnings("rawtypes")
+        Class c;
+        try {
+            c = Class.forName("android.view.Display");
+            @SuppressWarnings("unchecked")
+            Method method = c.getMethod("getRealMetrics", DisplayMetrics.class);
+            method.invoke(display, dm);
+            dpi = dm.heightPixels;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        rv.setLayoutParams(layoutParams);
+        return dpi;
+    }
+
+    /**
+     * 获取状态栏高度
+     * @param context
+     * @return
+     */
+    public static int getStatusBarHeight(Context context) {
+        Resources resources = context.getResources();
+        int resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
+        int height = resources.getDimensionPixelSize(resourceId);
+        return height;
     }
 
     /**
      * 获取屏幕宽高
+     * 这里的高度是实际应用显示的高度，排除了底部按键以及状态栏高度
      *
      * @param context 用来获取Resource的上下文环境
      * @return 数组，[宽度，高度]，单位px
@@ -96,6 +112,18 @@ public class CommonUtil {
         int width = dm.widthPixels;
         int height = dm.heightPixels;
         return new int[]{width, height};
+    }
+
+    /**
+     * 获取包含底部虚拟按键以及排除了状态栏的高度的高度
+     *
+     * @param context 上下文
+     * @return 数组，[宽度，高度]，单位px
+     */
+    public static int[] getRealScreenWH(Context context) {
+        int[] screenWH = getScreenWH(context);
+        screenWH[1] = getHasVirtualKeyHeight(context) - getStatusBarHeight(context);
+        return screenWH;
     }
 
     /**
@@ -131,14 +159,14 @@ public class CommonUtil {
         final String service = mContext.getPackageName() + "/" + helpService.getCanonicalName();
         try {
             accessibilityEnabled = Settings.Secure.getInt(mContext.getApplicationContext().getContentResolver(),
-                    android.provider.Settings.Secure.ACCESSIBILITY_ENABLED);
+                    Settings.Secure.ACCESSIBILITY_ENABLED);
         } catch (Settings.SettingNotFoundException e) {
             e.printStackTrace();
         }
         TextUtils.SimpleStringSplitter mStringColonSplitter = new TextUtils.SimpleStringSplitter(':');
 
         if (accessibilityEnabled == 1) {
-            android.util.Log.v(TAG, "***ACCESSIBILITY IS ENABLED*** -----------------");
+            Log.v(TAG, "***ACCESSIBILITY IS ENABLED*** -----------------");
             String settingValue = Settings.Secure.getString(mContext.getApplicationContext().getContentResolver(),
                     Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES);
             if (settingValue != null) {
@@ -146,9 +174,9 @@ public class CommonUtil {
                 while (mStringColonSplitter.hasNext()) {
                     String accessibilityService = mStringColonSplitter.next();
 
-                    android.util.Log.v(TAG, "-------------- > accessibilityService :: " + accessibilityService + " " + service);
+                    Log.v(TAG, "-------------- > accessibilityService :: " + accessibilityService + " " + service);
                     if (accessibilityService.equalsIgnoreCase(service)) {
-                        android.util.Log.v(TAG, "We've found the correct setting - accessibility is switched on!");
+                        Log.v(TAG, "We've found the correct setting - accessibility is switched on!");
                         return true;
                     }
                 }
