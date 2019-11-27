@@ -217,15 +217,15 @@ public class MainActivity extends BaseActivity {
         });
 
         //监听WIFI链接改变广播
-        registerReceiver(new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                NetworkInfo networkInfo = intent.getParcelableExtra(WifiManager.EXTRA_NETWORK_INFO);
-                if (networkInfo != null && networkInfo.isConnected()) {
-                    android.util.Log.d(TAG, "wifi ssid : " + networkInfo.getExtraInfo());
-                }
-            }
-        }, new IntentFilter(WifiManager.NETWORK_STATE_CHANGED_ACTION));
+//        registerReceiver(new BroadcastReceiver() {
+//            @Override
+//            public void onReceive(Context context, Intent intent) {
+//                NetworkInfo networkInfo = intent.getParcelableExtra(WifiManager.EXTRA_NETWORK_INFO);
+//                if (networkInfo != null && networkInfo.isConnected()) {
+//                    android.util.Log.d(TAG, "wifi ssid : " + networkInfo.getExtraInfo());
+//                }
+//            }
+//        }, new IntentFilter(WifiManager.NETWORK_STATE_CHANGED_ACTION));
 
 
         NumberPicker numberPicker = findViewById(R.id.test_nump);
@@ -252,11 +252,5 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unregisterReceiver(new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-
-            }
-        });
     }
 }
