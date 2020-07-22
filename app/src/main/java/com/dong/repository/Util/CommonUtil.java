@@ -46,7 +46,7 @@ public class CommonUtil {
      * @param context 上下文
      * @return WIFI 的SSID
      */
-    public static String GetWIFISSID(Context context) {
+    public static String getWIFISSID(Context context) {
         String ssid = "";
         if (context != null) {
             WifiManager wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
