@@ -63,4 +63,9 @@
         <attr name="rightMenuLayout" format="reference"/>
     </declare-styleable>
 
+    <declare-styleable name="TuYaAirBg">
+        <attr name="circleCount" format="integer"/>
+        <attr name="circleColor" format="color"/>
+        <attr name="circleRadius" format="integer"/>
+    </declare-styleable>
 </resources>

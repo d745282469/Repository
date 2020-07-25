@@ -16,14 +16,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CustomView.DottedLine.DottedLineActivity">
+        <activity android:name=".CustomView.TuyaAir.TuYaAirActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Show.ShowFloatBtnActivity"></activity>
+        <activity android:name=".CustomView.DottedLine.DottedLineActivity">
+
+        </activity>
+        <activity android:name=".Show.ShowFloatBtnActivity" />
         <activity android:name=".Show.ShowBaseAdapterActivity" />
         <activity android:name=".CustomView.ScrollMenu.ScrollMenuActivity" />
         <activity android:name=".CustomView.TouTiaoTabLayout.TouTiaoLayoutActivity" />
@@ -31,11 +34,13 @@
         <activity
             android:name=".MainActivity"
             android:launchMode="standard">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
     </application>
 
